@@ -1,10 +1,9 @@
 [![Issues][issues-shield]][issues-url]
 
 <!-- PROJECT LOGO -->
-  <h3 align="center">MedBud</h3>
+  <h3 align="center">Athena App</h3>
 
   <p align="center">
-    Saving lives, one text at a time.
     <br />
     <a href="https://github.com/"><strong>Explore the docs »</strong></a>
     <br />
