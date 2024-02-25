@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int       @id @default(autoincrement())
+  number     String    @unique
+  Prompt     Prompt[]
+  Location   Location? @relation(fields: [locationId], references: [id])
+  locationId Int?
+  Mother     Mother[]
+}
+
+model Prompt {
+  id     Int    @id @default(autoincrement())
+  prompt String
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int
+}
+
+model Location {
+  id       Int        @id @default(autoincrement())
+  location String     @unique
+  user     User[]
+  hospital Hospital[]
+}
+
+model Hospital {
+  id           Int        @id @default(autoincrement())
+  name         String
+  number       BigInt
+  location     Location[]
+  natalSupport Boolean
+}
+
+// user and mother are one to one
+// maternal care 
+
+model Mother {
+  id           Int     @id @default(autoincrement())
+  number       String 
+  natalSupport Boolean
+  user         User?   @relation(fields: [userId], references: [id])
+  userId       Int?
+}
